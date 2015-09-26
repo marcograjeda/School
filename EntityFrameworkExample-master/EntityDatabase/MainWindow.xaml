@@ -1,9 +1,15 @@
 ﻿<Window x:Class="MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:course="clr-namespace:Modules.Courses.Views"
+    xmlns:officeassignments="clr-namespace:Modules.OfficeAsignament.Views"   
+    xmlns:persons="clr-namespace:Modules.Person.Views"   
+    xmlns:courses="clr-namespace:Modules.Courses.Views"    
+    xmlns:departments="clr-namespace:Modules.Departments.Views"    
+    xmlns:onlinecourses="clr-namespace:Modules.OnlineCourses.Views"     
+    xmlns:onsitecourses="clr-namespace:Modules.OnsiteCourses.Views"    
+    xmlns:studentgrades="clr-namespace:Modules.StudentGrades.Views"
     Title="MainWindow" Height="377" Width="568">
     <Grid>
-        <course:CoursesList x:Name="DepartmenstUserControl"/>
+        <persons:PersonList x:Name="PersonsUserControl" Margin="26,0,99,-11"/>
     </Grid>
 </Window>

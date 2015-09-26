@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="OnsiteCoursesList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Height="282.09" Width="508.955">
+    <Grid>
+        <DataGrid HorizontalAlignment="Left" Margin="0,-2,-3,0" VerticalAlignment="Top"
+                  ItemsSource="{Binding  CoursesOnsite}" Height="284" Width="512"
+                  AutoGenerateColumns="false" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="ColumnID" Binding="{Binding Path=Course.Title}" Header="Course" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="ColumnLocation" Binding="{Binding Path=Location}" Header="Location" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="ColumnDays" Binding="{Binding Path=Days}" Header="Days" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="ColumnTime" Binding="{Binding Path=Time}" Header="Time" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

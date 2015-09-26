@@ -96,6 +96,7 @@
     <Compile Include="BusinessLogic\Services\Interfaces\IDepartmentService.vb" />
     <Compile Include="BusinessLogic\Services\Interfaces\IOfficeAsignament.vb" />
     <Compile Include="BusinessLogic\Services\Interfaces\IOnlineCourse.vb" />
+    <Compile Include="BusinessLogic\Services\Interfaces\IOnsiteCourse.vb" />
     <Compile Include="BusinessLogic\Services\Interfaces\IPerson.vb" />
     <Compile Include="BusinessLogic\Services\Interfaces\IStudentGrade.vb" />
     <Compile Include="BusinessLogic\Services\ServiceLocator.vb" />
@@ -156,6 +157,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Modules\OnsiteCourses\Views\OnsiteCoursesList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\Person\Views\PersonList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -193,13 +198,16 @@
     <Compile Include="Modules\Departments\Views\DepartmentsList.xaml.vb">
       <DependentUpon>DepartmentsList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Modules\OfficeAsignament\ViewModels\OfficeAsignamentViewModel.vb" />
     <Compile Include="Modules\OfficeAsignament\Views\OfficeAsignamentList.xaml.vb">
       <DependentUpon>OfficeAsignamentList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\OnlineCourses\ViewModels\OnlineCoursesViewModel.vb" />
     <Compile Include="Modules\OnlineCourses\Views\OnlineCoursesList.xaml.vb">
       <DependentUpon>OnlineCoursesList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\OnsiteCourses\ViewModels\OnsiteCoursesViewModel.vb" />
+    <Compile Include="Modules\OnsiteCourses\Views\OnsiteCoursesList.xaml.vb">
+      <DependentUpon>OnsiteCoursesList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\Person\ViewModels\PersonViewModel.vb" />
     <Compile Include="Modules\Person\Views\PersonList.xaml.vb">
@@ -261,6 +269,8 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Modules\OfficeAsignament\ViewModels\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

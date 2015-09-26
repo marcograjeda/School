@@ -1,3 +1,11 @@
-﻿Public Class OnsiteCoursesService
+﻿Imports BusinessObjects.Helpers
+Imports BusinessLogic.Services.Interfaces
+Namespace BusinessLogic.Services.Implementations
+    Public Class OnsiteCoursesService
+        Implements IOnsiteCourse
 
-End Class
+        Public Function GetOnsiteCourses() As IQueryable(Of OnsiteCourse) Implements IOnsiteCourse.GetOnsiteCourses
+            Return DataContext.DBEntities.OnsiteCourses
+        End Function
+    End Class
+End Namespace

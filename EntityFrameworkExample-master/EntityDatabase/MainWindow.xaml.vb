@@ -1,4 +1,10 @@
-﻿Imports Modules.Departments.ViewModels
+﻿
+Imports Modules.Person.ViewModels
+Imports Modules.Courses.ViewModels
+Imports Modules.Departments.ViewModels
+Imports Modules.OnlineCourses.ViewModels
+Imports Modules.OnsiteCourses.ViewModels
+Imports Modules.StudentGrade.ViewModels
 Class MainWindow
     Sub New()
 
@@ -6,7 +12,11 @@ Class MainWindow
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
-        Me.DepartmenstUserControl.MainGrid.DataContext = New DepartmentsViewModel()
-
+        'Me.CoursesUserControl.MainGrid.DataContext = New CoursesViewModel()
+        'Me.OnsiteCoursesUserControl.MainGrid.DataContext = New OnsiteCoursesViewModel()
+        'Me.OnsiteCoursesUserControl.MainGrid.DataContext = New OnsiteCoursesViewModel()
+        'Me.OnlineCoursesUserControl.MainGrid.DataContext = New OnlineCoursesViewModels()
+        'Me.OnsiteCoursesUserControl.MainGrid.DataContext = New OnsiteCoursesViewModel()
+        Me.PersonsUserControl.MainGrid.DataContext = New PersonViewModel()
     End Sub
 End Class
