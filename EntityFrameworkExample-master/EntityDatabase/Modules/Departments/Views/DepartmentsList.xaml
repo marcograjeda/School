@@ -3,10 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="348" d:DesignWidth="569">
+             mc:Ignorable="d" d:DesignWidth="569" Height="428.6">
     <Grid Name="MainGrid">
-        <DataGrid HorizontalAlignment="Left" Margin="25,30,0,0" VerticalAlignment="Top"
+        <DataGrid HorizontalAlignment="Left" Margin="28,0,0,0" VerticalAlignment="Top"
                   ItemsSource="{Binding Departments}" Height="284" Width="512"
                   AutoGenerateColumns="false" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
@@ -15,5 +14,6 @@
                 <DataGridTextColumn x:Name="BudgetColumn" Binding="{Binding Path=Budget}" Header="Budget" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button Content="Crear" HorizontalAlignment="Left" Margin="259,302,0,0" VerticalAlignment="Top" Width="75" Height="36" Command="{Binding ButtonCrear}"/>
     </Grid>
 </UserControl>

@@ -84,6 +84,7 @@
       <DependentUpon>Application.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BusinessLogic\Helpers\RelayCommand.vb" />
     <Compile Include="BusinessLogic\Helpers\ViewModelBase.vb" />
     <Compile Include="BusinessLogic\Services\Implementations\CourseService.vb" />
     <Compile Include="BusinessLogic\Services\Implementations\DepartmentService.vb" />
@@ -145,6 +146,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Modules\Departments\Views\DepartmentsCRUDView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\Departments\Views\DepartmentsList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -194,10 +199,15 @@
     <Compile Include="Modules\Courses\Views\CoursesList.xaml.vb">
       <DependentUpon>CoursesList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Departments\ViewModels\DepartmentCRUDViewModel.vb" />
     <Compile Include="Modules\Departments\ViewModels\DepartmentsViewModel.vb" />
+    <Compile Include="Modules\Departments\Views\DepartmentsCRUDView.xaml.vb">
+      <DependentUpon>DepartmentsCRUDView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Departments\Views\DepartmentsList.xaml.vb">
       <DependentUpon>DepartmentsList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\OfficeAsignament\ViewModels\OfficeAsignamentViewModel.vb" />
     <Compile Include="Modules\OfficeAsignament\Views\OfficeAsignamentList.xaml.vb">
       <DependentUpon>OfficeAsignamentList.xaml</DependentUpon>
     </Compile>
@@ -269,8 +279,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modules\OfficeAsignament\ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

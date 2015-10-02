@@ -1,4 +1,4 @@
-﻿Imports Modules.OfficeAsignament.ViewModels
+﻿Imports Modules.OfficeAsignament.Views
 Namespace Modules.OfficeAssignment.Views
     Public Class OfficeAssignmentList
 
