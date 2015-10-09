@@ -85,6 +85,7 @@ Namespace Modules.Courses.ViewModels
                 End Try
             End If
         End Sub
+
         Sub Actualizar()
             Me.Courses.Clear()
             ServiceLocator.RegisterService(Of IDepartmentService)(New CourseService)

@@ -162,6 +162,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Modules\OnlineCourses\Views\OnlineCoursesCRUD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\OnlineCourses\Views\OnlineCoursesList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -223,7 +227,11 @@
     <Compile Include="Modules\OfficeAsignament\Views\OfficeAsignamentList.xaml.vb">
       <DependentUpon>OfficeAsignamentList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\OnlineCourses\ViewModels\OnlineCoursesCRUDViewModel.vb" />
     <Compile Include="Modules\OnlineCourses\ViewModels\OnlineCoursesViewModel.vb" />
+    <Compile Include="Modules\OnlineCourses\Views\OnlineCoursesCRUD.xaml.vb">
+      <DependentUpon>OnlineCoursesCRUD.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\OnlineCourses\Views\OnlineCoursesList.xaml.vb">
       <DependentUpon>OnlineCoursesList.xaml</DependentUpon>
     </Compile>
@@ -231,6 +239,7 @@
     <Compile Include="Modules\OnsiteCourses\Views\OnsiteCoursesList.xaml.vb">
       <DependentUpon>OnsiteCoursesList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Person\ViewModels\PersonCRUDViewModel.vb" />
     <Compile Include="Modules\Person\ViewModels\PersonViewModel.vb" />
     <Compile Include="Modules\Person\Views\PersonCRUD.xaml.vb">
       <DependentUpon>PersonCRUD.xaml</DependentUpon>

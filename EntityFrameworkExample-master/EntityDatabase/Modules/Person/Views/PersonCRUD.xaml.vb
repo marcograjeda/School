@@ -1,3 +1,3 @@
-﻿Public Class PersonCRUD
+﻿Public Class PersonCRUDViewModel
 
 End Class

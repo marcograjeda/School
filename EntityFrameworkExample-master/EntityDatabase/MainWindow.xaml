@@ -17,9 +17,6 @@
             <TabItem Header="Departments">
                 <departments:DepartmentsList x:Name="DepartmentUserControl" />
             </TabItem>
-            <TabItem Header="Office Asignament">
-                <officeasignaments:OfficeAsignamentList x:Name="OfficeAssignmentsUserControl"/>
-            </TabItem>
             <TabItem Header="Online Courses">
                 <onlinecourses:OnlineCoursesList x:Name="OnlineCoursesUserControl" />
             </TabItem>
@@ -31,6 +28,9 @@
             </TabItem>
             <TabItem Header="Student Grade">
                 <studentgrades:StudentGradeList x:Name="StudentGradesUserControl" />
+            </TabItem>
+            <TabItem Header="Office Asignament">
+                <officeasignaments:OfficeAsignamentList x:Name="OfficeAssignmentsUserControl"/>
             </TabItem>
         </TabControl>
     </Grid>
