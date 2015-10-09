@@ -6,14 +6,14 @@
              mc:Ignorable="d" d:DesignWidth="569" Height="428.6">
     <Grid Name="MainGrid">
         <DataGrid HorizontalAlignment="Left" Margin="28,0,0,0" VerticalAlignment="Top"
-                  ItemsSource="{Binding Departments}" Height="284" Width="512"
-                  AutoGenerateColumns="false" RowDetailsVisibilityMode="VisibleWhenSelected">
+                  ItemsSource="{Binding Departments}" Height="284" Width="512" AutoGenerateColumns="false" RowDetailsVisibilityMode="VisibleWhenSelected" SelectedItem="{Binding Seleccionado}">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="DepartmentIdColumn" Binding="{Binding Path=DepartmentID}" Header="ID" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="NameColumn" Binding="{Binding Path=Name}" Header="Name" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="BudgetColumn" Binding="{Binding Path=Budget}" Header="Budget" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Crear" HorizontalAlignment="Left" Margin="259,302,0,0" VerticalAlignment="Top" Width="75" Height="36" Command="{Binding ButtonCrear}"/>
+        <Button Content="Crear" HorizontalAlignment="Left" Margin="180,302,0,0" VerticalAlignment="Top" Width="75" Height="36" Command="{Binding ButtonCrear}"/>
+        <Button Content="Eliminar" HorizontalAlignment="Left" Margin="277,302,0,0" VerticalAlignment="Top" Width="75" Height="36" Command="{Binding ButtonEliminar}"/>
     </Grid>
 </UserControl>

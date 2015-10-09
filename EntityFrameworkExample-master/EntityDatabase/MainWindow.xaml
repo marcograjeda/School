@@ -30,7 +30,7 @@
                 <persons:PersonList x:Name="PersonsUserControl" />
             </TabItem>
             <TabItem Header="Student Grade">
-                <!--<studentgrades:StudentGradeList x:Name="StudentGradesUserControl" />-->
+                <studentgrades:StudentGradeList x:Name="StudentGradesUserControl" />
             </TabItem>
         </TabControl>
     </Grid>

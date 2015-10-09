@@ -3,12 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="348" d:DesignWidth="569">
+             mc:Ignorable="d" d:DesignWidth="569" Height="386">
     <Grid Name="MainGrid">
         <DataGrid HorizontalAlignment="Left" Margin="25,30,0,0" VerticalAlignment="Top"
                   ItemsSource="{Binding Courses}" Height="284" Width="512"
-                  AutoGenerateColumns="false" RowDetailsVisibilityMode="VisibleWhenSelected">
+                  AutoGenerateColumns="false" RowDetailsVisibilityMode="VisibleWhenSelected" SelectedItem="{Binding Seleccionado}">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="ColumnID" Binding="{Binding Path=CourseID}" Header="ID" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="TitleColumn" Binding="{Binding Path=Title}" Header="Title" Width="SizeToHeader"/>
@@ -16,5 +15,7 @@
                 <DataGridTextColumn x:Name="Department" Binding="{Binding Path=Department.Name}" Header="Department" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button Content="Crear" HorizontalAlignment="Left" Margin="190,319,0,0" VerticalAlignment="Top" Width="75" Height="36" Command="{Binding ButtonCrear}"/>
+        <Button Content="Eliminar" HorizontalAlignment="Left" Margin="287,319,0,0" VerticalAlignment="Top" Width="75" Height="36" Command="{Binding ButtonEliminar}"/>
     </Grid>
 </UserControl>

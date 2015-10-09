@@ -7,6 +7,6 @@
         <TextBox HorizontalAlignment="Left" Height="23" Margin="126,32,0,0" TextWrapping="Wrap" Text="{Binding Nombres, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="141"/>
         <Label Content="Budget" HorizontalAlignment="Left" Margin="41,86,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="126,86,0,0" TextWrapping="Wrap" Text="{Binding Presupuesto, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="141"/>
-        <Button Command="{Binding ButtonCrear}" Content="Crear" HorizontalAlignment="Left" Margin="111,196,0,0" VerticalAlignment="Top" Width="97" Height="39"/>
+        <Button Command="{Binding ButtonCrear}" Content="Aceptar" HorizontalAlignment="Left" Margin="111,196,0,0" VerticalAlignment="Top" Width="97" Height="39"/>
     </Grid>
 </Window>

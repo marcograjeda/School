@@ -142,6 +142,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Modules\Courses\Views\CoursesCRUD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\Courses\Views\CoursesList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -163,6 +167,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modules\OnsiteCourses\Views\OnsiteCoursesList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Person\Views\PersonCRUD.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -195,7 +203,11 @@
     <Import Include="System.Windows.Navigation" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Modules\Courses\ViewModels\CoursesCRUDViewModel.vb" />
     <Compile Include="Modules\Courses\ViewModels\CoursesViewModel.vb" />
+    <Compile Include="Modules\Courses\Views\CoursesCRUD.xaml.vb">
+      <DependentUpon>CoursesCRUD.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Courses\Views\CoursesList.xaml.vb">
       <DependentUpon>CoursesList.xaml</DependentUpon>
     </Compile>
@@ -220,6 +232,9 @@
       <DependentUpon>OnsiteCoursesList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\Person\ViewModels\PersonViewModel.vb" />
+    <Compile Include="Modules\Person\Views\PersonCRUD.xaml.vb">
+      <DependentUpon>PersonCRUD.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Person\Views\PersonList.xaml.vb">
       <DependentUpon>PersonList.xaml</DependentUpon>
     </Compile>

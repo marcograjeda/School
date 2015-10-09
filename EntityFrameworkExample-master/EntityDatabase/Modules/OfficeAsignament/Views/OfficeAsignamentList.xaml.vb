@@ -1,6 +1,3 @@
-﻿Imports Modules.OfficeAsignament.Views
-Namespace Modules.OfficeAssignment.Views
-    Public Class OfficeAssignmentList
+﻿Public Class OfficeAssignmentList
 
-    End Class
-End Namespace
+End Class

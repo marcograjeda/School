@@ -7,11 +7,12 @@
              d:DesignHeight="348" d:DesignWidth="569">
     <Grid Name="MainGrid">
         <DataGrid HorizontalAlignment="Left" Margin="25,30,0,0" VerticalAlignment="Top"
-                  ItemsSource="{Binding Asignaments}" Height="284" Width="512"
+                  ItemsSource="{Binding Asignament}" Height="284" Width="512"
                   AutoGenerateColumns="false" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="LocationColumn" Binding="{Binding Path=Location}" Header="Location" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="TimestampColumn" Binding="{Binding Path=Timestamp}" Header="Timestamp" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="IdColumn" Binding="{Binding Path=Person.FirstName}" Header="Instructor" Width="Auto"/>
+                <DataGridTextColumn x:Name="LocationColumn" Binding="{Binding Path=Location}" Header="Location" Width="Auto"/>
+                <DataGridTextColumn x:Name="TimestampColumn" Binding="{Binding Path=Timestamp}" Header="Timestamp" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -14,6 +14,7 @@ Namespace Modules.Departments.ViewModels
         Private windowCRUD As DepartmentsCRUDView
         Private nombre As String
         Private bud As String
+        Dim fallo As Boolean
 
         Public Sub New(window As DepartmentsCRUDView)
             ServiceLocator.RegisterService(Of IDepartmentService)(New DepartmentService)
@@ -52,14 +53,22 @@ Namespace Modules.Departments.ViewModels
 
 
         Public Sub Creando()
-            Dim department As New Department
-            Dim departments As IQueryable(Of Department) = DataContext.DBEntities.Departments
-            department.Name = Nombres
-            department.Budget = Presupuesto
-            department.StartDate = DateTime.Today
-            datos.CrearDepartment(department)
-            MsgBox("Departement creado", MsgBoxStyle.Information, "School")
-            windowCRUD.Close()
+            Try
+                Dim department As New Department
+                Dim departments As IQueryable(Of Department) = DataContext.DBEntities.Departments
+                department.Name = Nombres
+                department.Budget = Presupuesto
+                department.StartDate = Date.Today
+                For Each element In departments
+                    department.DepartmentID = Integer.Parse(element.DepartmentID.ToString) + 1
+                Next
+                DataContext.DBEntities.Departments.Add(department)
+                DataContext.DBEntities.SaveChanges()
+                MsgBox("Departemento creado", MsgBoxStyle.Information, "School")
+                windowCRUD.Close()
+            Catch ex As Exception
+                MessageBox.Show("No crear el departamento", MsgBoxStyle.Critical)
+            End Try
         End Sub
     End Class
 End Namespace

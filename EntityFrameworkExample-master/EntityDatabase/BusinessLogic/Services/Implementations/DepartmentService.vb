@@ -8,10 +8,6 @@ Namespace BusinessLogic.Services.Implementations
             Return DataContext.DBEntities.Departments
         End Function
 
-        Public Sub CrearDepartment(department As Department) Implements IDepartmentService.CrearDepartment
-            DataContext.DBEntities.Departments.Add(department)
-            DataContext.DBEntities.SaveChanges()
-        End Sub
     End Class
 End Namespace
 

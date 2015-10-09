@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BusinessObjects.Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BusinessObjects.Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Course">
           <Key>
             <PropertyRef Name="CourseID" />
@@ -213,75 +213,111 @@
             <End Role="StudentGrade" EntitySet="StudentGrade" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BusinessObjects.Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SchoolEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Courses" EntityType="BusinessObjects.Models.Course" />
+          <EntitySet Name="Departments" EntityType="BusinessObjects.Models.Department" />
+          <EntitySet Name="OfficeAssignments" EntityType="BusinessObjects.Models.OfficeAssignment" />
+          <EntitySet Name="OnlineCourses" EntityType="BusinessObjects.Models.OnlineCourse" />
+          <EntitySet Name="OnsiteCourses" EntityType="BusinessObjects.Models.OnsiteCourse" />
+          <EntitySet Name="People" EntityType="BusinessObjects.Models.Person" />
+          <EntitySet Name="StudentGrades" EntityType="BusinessObjects.Models.StudentGrade" />
+          <AssociationSet Name="FK_Course_Department" Association="BusinessObjects.Models.FK_Course_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Course" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnlineCourse_Course" Association="BusinessObjects.Models.FK_OnlineCourse_Course">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="OnlineCourse" EntitySet="OnlineCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnsiteCourse_Course" Association="BusinessObjects.Models.FK_OnsiteCourse_Course">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="OnsiteCourse" EntitySet="OnsiteCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentGrade_Course" Association="BusinessObjects.Models.FK_StudentGrade_Course">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="StudentGrade" EntitySet="StudentGrades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OfficeAssignment_Person" Association="BusinessObjects.Models.FK_OfficeAssignment_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="OfficeAssignment" EntitySet="OfficeAssignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentGrade_Student" Association="BusinessObjects.Models.FK_StudentGrade_Student">
+            <End Role="Person" EntitySet="People" />
+            <End Role="StudentGrade" EntitySet="StudentGrades" />
+          </AssociationSet>
+          <AssociationSet Name="CourseInstructor" Association="BusinessObjects.Models.CourseInstructor">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Person" EntitySet="People" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Course">
           <Key>
             <PropertyRef Name="CourseID" />
           </Key>
           <Property Name="CourseID" Type="Int32" Nullable="false" />
-          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Credits" Type="Int32" Nullable="false" />
           <Property Name="DepartmentID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Department" Relationship="Self.FK_Course_Department" FromRole="Course" ToRole="Department" />
-          <NavigationProperty Name="OnlineCourse" Relationship="Self.FK_OnlineCourse_Course" FromRole="Course" ToRole="OnlineCourse" />
-          <NavigationProperty Name="OnsiteCourse" Relationship="Self.FK_OnsiteCourse_Course" FromRole="Course" ToRole="OnsiteCourse" />
-          <NavigationProperty Name="StudentGrades" Relationship="Self.FK_StudentGrade_Course" FromRole="Course" ToRole="StudentGrade" />
-          <NavigationProperty Name="People" Relationship="Self.CourseInstructor" FromRole="Course" ToRole="Person" />
+          <NavigationProperty Name="Department" Relationship="BusinessObjects.Models.FK_Course_Department" FromRole="Course" ToRole="Department" />
+          <NavigationProperty Name="OnlineCourse" Relationship="BusinessObjects.Models.FK_OnlineCourse_Course" FromRole="Course" ToRole="OnlineCourse" />
+          <NavigationProperty Name="OnsiteCourse" Relationship="BusinessObjects.Models.FK_OnsiteCourse_Course" FromRole="Course" ToRole="OnsiteCourse" />
+          <NavigationProperty Name="StudentGrades" Relationship="BusinessObjects.Models.FK_StudentGrade_Course" FromRole="Course" ToRole="StudentGrade" />
+          <NavigationProperty Name="People" Relationship="BusinessObjects.Models.CourseInstructor" FromRole="Course" ToRole="Person" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
             <PropertyRef Name="DepartmentID" />
           </Key>
           <Property Name="DepartmentID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Budget" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Budget" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Administrator" Type="Int32" />
-          <NavigationProperty Name="Courses" Relationship="Self.FK_Course_Department" FromRole="Department" ToRole="Course" />
+          <NavigationProperty Name="Courses" Relationship="BusinessObjects.Models.FK_Course_Department" FromRole="Department" ToRole="Course" />
         </EntityType>
         <EntityType Name="OfficeAssignment">
           <Key>
             <PropertyRef Name="InstructorID" />
           </Key>
           <Property Name="InstructorID" Type="Int32" Nullable="false" />
-          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Timestamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="Person" Relationship="Self.FK_OfficeAssignment_Person" FromRole="OfficeAssignment" ToRole="Person" />
+          <Property Name="Location" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Person" Relationship="BusinessObjects.Models.FK_OfficeAssignment_Person" FromRole="OfficeAssignment" ToRole="Person" />
         </EntityType>
         <EntityType Name="OnlineCourse">
           <Key>
             <PropertyRef Name="CourseID" />
           </Key>
           <Property Name="CourseID" Type="Int32" Nullable="false" />
-          <Property Name="URL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Course" Relationship="Self.FK_OnlineCourse_Course" FromRole="OnlineCourse" ToRole="Course" />
+          <Property Name="URL" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Course" Relationship="BusinessObjects.Models.FK_OnlineCourse_Course" FromRole="OnlineCourse" ToRole="Course" />
         </EntityType>
         <EntityType Name="OnsiteCourse">
           <Key>
             <PropertyRef Name="CourseID" />
           </Key>
           <Property Name="CourseID" Type="Int32" Nullable="false" />
-          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Days" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Location" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Days" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Time" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Course" Relationship="Self.FK_OnsiteCourse_Course" FromRole="OnsiteCourse" ToRole="Course" />
+          <NavigationProperty Name="Course" Relationship="BusinessObjects.Models.FK_OnsiteCourse_Course" FromRole="OnsiteCourse" ToRole="Course" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
             <PropertyRef Name="PersonID" />
           </Key>
           <Property Name="PersonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="HireDate" Type="DateTime" Precision="3" />
           <Property Name="EnrollmentDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="OfficeAssignment" Relationship="Self.FK_OfficeAssignment_Person" FromRole="Person" ToRole="OfficeAssignment" />
-          <NavigationProperty Name="StudentGrades" Relationship="Self.FK_StudentGrade_Student" FromRole="Person" ToRole="StudentGrade" />
-          <NavigationProperty Name="Courses" Relationship="Self.CourseInstructor" FromRole="Person" ToRole="Course" />
+          <NavigationProperty Name="OfficeAssignment" Relationship="BusinessObjects.Models.FK_OfficeAssignment_Person" FromRole="Person" ToRole="OfficeAssignment" />
+          <NavigationProperty Name="StudentGrades" Relationship="BusinessObjects.Models.FK_StudentGrade_Student" FromRole="Person" ToRole="StudentGrade" />
+          <NavigationProperty Name="Courses" Relationship="BusinessObjects.Models.CourseInstructor" FromRole="Person" ToRole="Course" />
         </EntityType>
         <EntityType Name="StudentGrade">
           <Key>
@@ -291,12 +327,12 @@
           <Property Name="CourseID" Type="Int32" Nullable="false" />
           <Property Name="StudentID" Type="Int32" Nullable="false" />
           <Property Name="Grade" Type="Decimal" Precision="3" Scale="2" />
-          <NavigationProperty Name="Course" Relationship="Self.FK_StudentGrade_Course" FromRole="StudentGrade" ToRole="Course" />
-          <NavigationProperty Name="Person" Relationship="Self.FK_StudentGrade_Student" FromRole="StudentGrade" ToRole="Person" />
+          <NavigationProperty Name="Course" Relationship="BusinessObjects.Models.FK_StudentGrade_Course" FromRole="StudentGrade" ToRole="Course" />
+          <NavigationProperty Name="Person" Relationship="BusinessObjects.Models.FK_StudentGrade_Student" FromRole="StudentGrade" ToRole="Person" />
         </EntityType>
         <Association Name="FK_Course_Department">
-          <End Role="Department" Type="Self.Department" Multiplicity="1" />
-          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <End Type="BusinessObjects.Models.Department" Role="Department" Multiplicity="1" />
+          <End Type="BusinessObjects.Models.Course" Role="Course" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Department">
               <PropertyRef Name="DepartmentID" />
@@ -307,8 +343,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OnlineCourse_Course">
-          <End Role="Course" Type="Self.Course" Multiplicity="1" />
-          <End Role="OnlineCourse" Type="Self.OnlineCourse" Multiplicity="0..1" />
+          <End Type="BusinessObjects.Models.Course" Role="Course" Multiplicity="1" />
+          <End Type="BusinessObjects.Models.OnlineCourse" Role="OnlineCourse" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Course">
               <PropertyRef Name="CourseID" />
@@ -319,8 +355,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OnsiteCourse_Course">
-          <End Role="Course" Type="Self.Course" Multiplicity="1" />
-          <End Role="OnsiteCourse" Type="Self.OnsiteCourse" Multiplicity="0..1" />
+          <End Type="BusinessObjects.Models.Course" Role="Course" Multiplicity="1" />
+          <End Type="BusinessObjects.Models.OnsiteCourse" Role="OnsiteCourse" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Course">
               <PropertyRef Name="CourseID" />
@@ -331,8 +367,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_StudentGrade_Course">
-          <End Role="Course" Type="Self.Course" Multiplicity="1" />
-          <End Role="StudentGrade" Type="Self.StudentGrade" Multiplicity="*" />
+          <End Type="BusinessObjects.Models.Course" Role="Course" Multiplicity="1" />
+          <End Type="BusinessObjects.Models.StudentGrade" Role="StudentGrade" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Course">
               <PropertyRef Name="CourseID" />
@@ -343,8 +379,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OfficeAssignment_Person">
-          <End Role="Person" Type="Self.Person" Multiplicity="1" />
-          <End Role="OfficeAssignment" Type="Self.OfficeAssignment" Multiplicity="0..1" />
+          <End Type="BusinessObjects.Models.Person" Role="Person" Multiplicity="1" />
+          <End Type="BusinessObjects.Models.OfficeAssignment" Role="OfficeAssignment" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Person">
               <PropertyRef Name="PersonID" />
@@ -355,8 +391,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_StudentGrade_Student">
-          <End Role="Person" Type="Self.Person" Multiplicity="1" />
-          <End Role="StudentGrade" Type="Self.StudentGrade" Multiplicity="*" />
+          <End Type="BusinessObjects.Models.Person" Role="Person" Multiplicity="1" />
+          <End Type="BusinessObjects.Models.StudentGrade" Role="StudentGrade" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Person">
               <PropertyRef Name="PersonID" />
@@ -367,46 +403,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="CourseInstructor">
-          <End Role="Course" Type="Self.Course" Multiplicity="*" />
-          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <End Type="BusinessObjects.Models.Course" Role="Course" Multiplicity="*" />
+          <End Type="BusinessObjects.Models.Person" Role="Person" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="SchoolEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Courses" EntityType="Self.Course" />
-          <EntitySet Name="Departments" EntityType="Self.Department" />
-          <EntitySet Name="OfficeAssignments" EntityType="Self.OfficeAssignment" />
-          <EntitySet Name="OnlineCourses" EntityType="Self.OnlineCourse" />
-          <EntitySet Name="OnsiteCourses" EntityType="Self.OnsiteCourse" />
-          <EntitySet Name="People" EntityType="Self.Person" />
-          <EntitySet Name="StudentGrades" EntityType="Self.StudentGrade" />
-          <AssociationSet Name="FK_Course_Department" Association="Self.FK_Course_Department">
-            <End Role="Department" EntitySet="Departments" />
-            <End Role="Course" EntitySet="Courses" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OnlineCourse_Course" Association="Self.FK_OnlineCourse_Course">
-            <End Role="Course" EntitySet="Courses" />
-            <End Role="OnlineCourse" EntitySet="OnlineCourses" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OnsiteCourse_Course" Association="Self.FK_OnsiteCourse_Course">
-            <End Role="Course" EntitySet="Courses" />
-            <End Role="OnsiteCourse" EntitySet="OnsiteCourses" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StudentGrade_Course" Association="Self.FK_StudentGrade_Course">
-            <End Role="Course" EntitySet="Courses" />
-            <End Role="StudentGrade" EntitySet="StudentGrades" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OfficeAssignment_Person" Association="Self.FK_OfficeAssignment_Person">
-            <End Role="Person" EntitySet="People" />
-            <End Role="OfficeAssignment" EntitySet="OfficeAssignments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StudentGrade_Student" Association="Self.FK_StudentGrade_Student">
-            <End Role="Person" EntitySet="People" />
-            <End Role="StudentGrade" EntitySet="StudentGrades" />
-          </AssociationSet>
-          <AssociationSet Name="CourseInstructor" Association="Self.CourseInstructor">
-            <End Role="Course" EntitySet="Courses" />
-            <End Role="Person" EntitySet="People" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -416,78 +415,78 @@
           <EntitySetMapping Name="Courses">
             <EntityTypeMapping TypeName="BusinessObjects.Models.Course">
               <MappingFragment StoreEntitySet="Course">
-                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Credits" ColumnName="Credits" />
                 <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="Credits" ColumnName="Credits" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Departments">
             <EntityTypeMapping TypeName="BusinessObjects.Models.Department">
               <MappingFragment StoreEntitySet="Department">
-                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Budget" ColumnName="Budget" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="Administrator" ColumnName="Administrator" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Budget" ColumnName="Budget" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OfficeAssignments">
             <EntityTypeMapping TypeName="BusinessObjects.Models.OfficeAssignment">
               <MappingFragment StoreEntitySet="OfficeAssignment">
-                <ScalarProperty Name="InstructorID" ColumnName="InstructorID" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
                 <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="InstructorID" ColumnName="InstructorID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OnlineCourses">
             <EntityTypeMapping TypeName="BusinessObjects.Models.OnlineCourse">
               <MappingFragment StoreEntitySet="OnlineCourse">
-                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
                 <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OnsiteCourses">
             <EntityTypeMapping TypeName="BusinessObjects.Models.OnsiteCourse">
               <MappingFragment StoreEntitySet="OnsiteCourse">
-                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
-                <ScalarProperty Name="Days" ColumnName="Days" />
                 <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Days" ColumnName="Days" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="People">
             <EntityTypeMapping TypeName="BusinessObjects.Models.Person">
               <MappingFragment StoreEntitySet="Person">
-                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
                 <ScalarProperty Name="EnrollmentDate" ColumnName="EnrollmentDate" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="StudentGrades">
             <EntityTypeMapping TypeName="BusinessObjects.Models.StudentGrade">
               <MappingFragment StoreEntitySet="StudentGrade">
-                <ScalarProperty Name="EnrollmentID" ColumnName="EnrollmentID" />
-                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
-                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
                 <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="EnrollmentID" ColumnName="EnrollmentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <AssociationSetMapping Name="CourseInstructor" TypeName="BusinessObjects.Models.CourseInstructor" StoreEntitySet="CourseInstructor">
-            <EndProperty Name="Course">
-              <ScalarProperty Name="CourseID" ColumnName="CourseID" />
-            </EndProperty>
             <EndProperty Name="Person">
               <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+            </EndProperty>
+            <EndProperty Name="Course">
+              <ScalarProperty Name="CourseID" ColumnName="CourseID" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>
